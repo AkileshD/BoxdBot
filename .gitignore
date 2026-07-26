@@ -5,6 +5,17 @@ SPEC.md
 BUILDING.md
 UNDERSTANDING.md
 
+# ── Design artefacts — excluded per Session 4 approval ───────────────────────
+# DELIBERATE DEVIATION FROM SPEC.md §0:
+# §0 states that design/mock/ sketches should be committed as an approval
+# artefact before UI work begins (the workflow is: requirements → sketches in
+# design/mock/ → agent reviews → user approves → UI code written).
+# Excluding design/ entirely means mock sketches are local-only rather than
+# committed gate artefacts. This is a known, approved exception: the approval
+# gate remains enforced by conversation discipline (the agent will not build
+# UI without seeing mocks), but the mocks themselves are not tracked in git.
+design/
+
 # ── OS / editor noise ────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
@@ -38,3 +49,5 @@ node_modules/
 *.log
 findings_log.json
 findings_log.db
+*.db-wal
+*.db-shm

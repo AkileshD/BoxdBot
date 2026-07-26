@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "boxdbot"
+version = "0.1.0"
+description = "LLM-powered agent for analysing personal Letterboxd data."
+requires-python = ">=3.11"
+
+dependencies = [
+    # LLM API — Groq's OpenAI-compatible endpoint via the openai package.
+    # Using openai rather than the groq SDK so the base_url swap is the only
+    # change needed if the provider changes later.
+    "openai>=1.30",
+
+    # Data engine — what the agent's generated code runs against (§4, §4a).
+    "pandas>=2.2",
+    "numpy>=1.26",
+
+    # Backend API + SSE streaming (§7, §7a).
+    "fastapi>=0.111",
+    "uvicorn[standard]>=0.29",
+    "sse-starlette>=2.1",
+
+    # Interactive charts — Plotly backend for make_chart (§4b, §7).
+    "plotly>=5.22",
+
+    # Environment variable loading for the Groq API key.
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "httpx>=0.27",   # needed by FastAPI's TestClient
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["backend*"]
