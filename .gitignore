@@ -1,0 +1,40 @@
+# ── Local working docs — never committed to the public repo ──────────────────
+# These are session-scoped notes and decisions; they stay local only.
+# See SPEC.md §0 for the doc governance model.
+SPEC.md
+BUILDING.md
+UNDERSTANDING.md
+
+# ── OS / editor noise ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# ── Node / frontend ──────────────────────────────────────────────────────────
+node_modules/
+.npm/
+
+# ── Environment / secrets ────────────────────────────────────────────────────
+# API keys and uploaded CSVs must never be committed.
+.env
+.env.*
+*.csv
+
+# ── Runtime / generated ──────────────────────────────────────────────────────
+*.log
+findings_log.json
+findings_log.db
