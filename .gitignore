@@ -51,3 +51,5 @@ findings_log.json
 findings_log.db
 *.db-wal
 *.db-shm
+lb/
+temp_db_inspect.txt
