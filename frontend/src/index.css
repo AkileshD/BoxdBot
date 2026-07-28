@@ -1,0 +1,573 @@
+/* =========================================================
+   BoxdBot — Global Styles v3
+   Palette: Script Page
+   - Background:   #F0F0ED  (newsprint off-white)
+   - Ink / Text:   #111111  (near-black)
+   - Accent:       #00E054  (Letterboxd neon green)
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* ── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: #111;
+  color: #111111;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+/* ── Design Tokens ─────────────────────────────────────── */
+:root {
+  --bg:         #F0F0ED;
+  --ink:        #111111;
+  --ink-dim:    #555555;
+  --accent:     #00E054;
+  --border:     2px solid #111111;
+  --border-thick: 4px solid #111111;
+  --mono:       'IBM Plex Mono', monospace;
+  --sans:       'IBM Plex Sans', sans-serif;
+}
+
+button, input {
+  font-family: inherit;
+}
+
+/* ── Poster Background (Both Pages) ────────────────────── */
+.stripe-container {
+  position: fixed;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  display: flex;
+  transform: skewX(-15deg);
+  z-index: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.stripe {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-right: 4px solid #000;
+  opacity: 0.85; /* Slightly dim the posters so text remains readable */
+  transition: background-image 0.8s ease-in-out;
+}
+
+/* Overlay that sits on top of posters to hold the UI */
+.overlay-page {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── SETUP PAGE ─────────────────────────────────────────── */
+.setup-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.setup-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border: var(--border);
+  background: var(--bg);
+  margin-bottom: 28px;
+}
+
+.setup-card {
+  background: #FFFFFF;
+  border: var(--border-thick);
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 420px;
+}
+
+.setup-card h1 {
+  font-family: var(--mono);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  border-bottom: var(--border);
+  padding-bottom: 16px;
+  margin-bottom: 4px;
+}
+
+.setup-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.setup-input {
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 13px;
+  border: var(--border);
+  background: var(--bg);
+  color: var(--ink);
+  padding: 10px 12px;
+  outline: none;
+}
+
+.setup-input:focus {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.file-drop {
+  border: 2px dashed #111111;
+  padding: 22px;
+  text-align: center;
+  background: var(--bg);
+  font-family: var(--mono);
+  font-size: 12px;
+  cursor: pointer;
+  display: block;
+}
+
+.file-drop.has-file {
+  border-style: solid;
+}
+
+.file-name {
+  font-weight: 600;
+}
+
+.setup-error {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #b00;
+  border: 1px solid #b00;
+  padding: 8px 10px;
+  background: #fff5f5;
+}
+
+.btn-start {
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: var(--border-thick);
+  background: var(--accent);
+  color: var(--ink);
+  padding: 14px 24px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-start:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--accent);
+}
+
+.btn-start:disabled {
+  background: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}
+
+
+/* ── CHAT PAGE ─────────────────────────────────────────── */
+/* Top bar */
+.chat-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 46px;
+  background: var(--bg);
+  border-bottom: var(--border);
+  flex-shrink: 0;
+}
+
+.chat-brand {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.chat-brand span {
+  color: var(--accent);
+}
+
+.chat-topbar-actions {
+  display: flex;
+  gap: 0;
+}
+
+.btn-topbar {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: var(--border);
+  background: var(--bg);
+  color: var(--ink);
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-left: -2px;
+}
+
+.btn-topbar:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* Arena & Growing Panel */
+.chat-arena {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.chat-panel {
+  background: #FFFFFF;
+  border: var(--border-thick);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: width, height;
+}
+
+.chat-panel-inner {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Jackpot Left Column */
+.jackpot-col {
+  width: 100px;
+  flex-shrink: 0;
+  border-right: var(--border);
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  gap: 16px;
+}
+
+.jackpot-window {
+  width: 60px;
+  height: 60px;
+  border: var(--border-thick);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  position: relative;
+}
+
+/* The actual spinning strip inside the window */
+.jackpot-reel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.jackpot-frame {
+  height: 60px; /* Must match jackpot-window height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.jackpot-frame.accent {
+  color: var(--accent);
+}
+
+.jackpot-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  text-align: center;
+}
+
+.jackpot-status {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+/* Chat Main Right Area */
+.chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Thinking bar */
+.chat-thinking-bar {
+  padding: 14px 20px;
+  border-bottom: var(--border);
+  background: #FFF;
+  flex-shrink: 0;
+}
+
+.chat-thinking-q {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.chat-thinking-hint {
+  font-family: var(--sans);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-dim);
+  margin-top: 4px;
+}
+
+/* Trace Area */
+.trace-panel {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.trace-event {
+  border: 1px solid #D4D4D0;
+  padding: 9px 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.trace-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 4px;
+}
+
+.trace-event--stream_start { border-left: 3px solid var(--ink); background: #FFF; }
+.trace-event--tool_call { border-left: 3px solid var(--ink); background: #FFF; }
+.trace-event--observation { border-left: 3px solid #AAAAAA; background: rgba(0,0,0,0.02); }
+.trace-event--clarification { border-left: 3px solid #e67e22; background: #FFF; }
+.trace-event--thin_flag { border-left: 3px solid #c0392b; background: #FFF; }
+
+.trace-event--final_answer {
+  border: var(--border-thick);
+  background: var(--ink);
+  color: var(--bg);
+  padding: 14px 16px;
+  margin-top: 8px;
+}
+
+.trace-event--error {
+  border-left: 3px solid #c0392b;
+  color: #c0392b;
+  background: #FFF;
+}
+
+.trace-reasoning {
+  font-style: italic;
+  color: #666;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.trace-code {
+  background: rgba(0,0,0,0.04);
+  border: 1px solid #D4D4D0;
+  padding: 6px 8px;
+  font-size: 10px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin-top: 5px;
+  max-height: 160px;
+  overflow-y: auto;
+  font-family: var(--mono);
+}
+
+.final-summary {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--bg);
+}
+
+.final-confidence {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,240,237,0.6);
+}
+
+.chart-wrapper {
+  border: var(--border);
+  margin-top: 12px;
+  background: #FFF;
+}
+
+/* Past findings hint */
+.past-findings-hint {
+  border: 1px solid #D4D4D0;
+  border-left: 3px solid #AAAAAA;
+  padding: 10px 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  background: #FFF;
+}
+.past-finding-item {
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--ink-dim);
+}
+
+/* Input Row */
+.chat-input-row {
+  display: flex;
+  border-top: var(--border);
+  flex-shrink: 0;
+  background: #FFF;
+}
+
+.chat-input {
+  flex: 1;
+  font-family: var(--mono);
+  font-size: 13px;
+  border: none;
+  border-right: var(--border);
+  background: transparent;
+  color: var(--ink);
+  padding: 14px 16px;
+  outline: none;
+}
+
+.chat-input:disabled {
+  color: #999;
+  background: rgba(0,0,0,0.03);
+}
+
+.btn-send {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: none;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 14px 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.btn-send:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.btn-send:disabled {
+  background: #888;
+  cursor: not-allowed;
+}
+
+
+/* ── Conveyor Belt Footer ──────────────────────────────── */
+.quote-footer {
+  height: 34px;
+  background: var(--ink);
+  color: var(--bg);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+}
+
+.quote-track {
+  display: flex;
+  animation: conveyor 180s linear infinite; /* Slower 180s */
+  white-space: nowrap;
+}
+
+.quote-item {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-style: italic;
+  padding: 0 56px;
+  border-right: 1px solid #333;
+  line-height: 34px;
+  flex-shrink: 0;
+}
+
+.quote-film {
+  opacity: 0.4;
+  font-style: normal;
+  margin-left: 10px;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+@keyframes conveyor {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #AAAAAA; }

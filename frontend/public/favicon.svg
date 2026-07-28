@@ -1,0 +1,8 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shadow -->
+  <ellipse cx="32" cy="56" rx="20" ry="4" fill="rgba(0,0,0,0.4)" />
+  <!-- Red Ball -->
+  <circle cx="32" cy="28" r="24" fill="#e74c3c" />
+  <!-- Highlight -->
+  <ellipse cx="24" cy="18" rx="8" ry="4" fill="rgba(255,255,255,0.4)" transform="rotate(-30 24 18)" />
+</svg>
